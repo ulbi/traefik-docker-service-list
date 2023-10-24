@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        // Tooltip activation
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
+    </script>
+    <style>
+        .no-underline {
+            text-decoration: none !important;
+        }        
+
+        .container {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        {% for stack, routers in stacks.items() %}
+            {% set bg_color = get_color_from_string(stack) %}
+            {% set text_color = get_contrast_color(bg_color) %}
+            <h2 style="padding-left: 5px; color: {{ bg_color }}">{{ stack }}</h2>
+            <div class="row g-4">
+                {% for router in routers %}
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <a href="{{ router['url'] }}" target="_blank" class="no-underline" data-bs-toggle="tooltip" title="{{ router.get('description', '') }}">
+                            <div class="card" style="background-color: {{ bg_color }}; color: {{ text_color }};">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ router.get('service_label', router.get('name', '')) }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
