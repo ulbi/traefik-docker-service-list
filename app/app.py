@@ -6,6 +6,7 @@ from hashlib import md5
 import config
 
 app = Flask(__name__)
+
 app.config.from_object('config')
 logging.basicConfig(level=app.config['LOG_LEVEL'])
 
