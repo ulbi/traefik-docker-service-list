@@ -19,12 +19,12 @@ The goal of this project is to create a simple, yet effectively formatted web ap
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/yourrepository.git
+    git clone https://github.com/ulbi/traefik-docker-service-list.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd yourrepository
+    cd traefik-docker-service-list
     ```
 
 3. Build the Docker image:
